@@ -1,0 +1,9 @@
+RewriteEngine On
+# Tự động thêm đuôi .html nếu người dùng không gõ
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Ép sử dụng HTTPS để bảo mật thông tin khách hàng
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
